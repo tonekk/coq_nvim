@@ -239,7 +239,7 @@ async def _slurp(nvim: Nvim, stack: Stack, warn: AbstractSet[SnippetWarnings]) -
         await stack.sdb.clean(stale)
         if SnippetWarnings.missing in warn and not (bundled or user_compiled):
             await sleep(0)
-            await awrite(nvim, LANG("fs snip load empty"))
+            # await awrite(nvim, LANG("fs snip load empty"))
 
         for fut in as_completed(
             tuple(_load_compiled(path, mtime) for path, mtime in compiled.items())
@@ -267,7 +267,7 @@ async def _slurp(nvim: Nvim, stack: Stack, warn: AbstractSet[SnippetWarnings]) -
                 f"{path} -- {prev} -> {cur}"
                 for path, (cur, prev) in new_user_snips.items()
             )
-            await awrite(nvim, LANG("fs snip needs compile", paths=paths))
+            # await awrite(nvim, LANG("fs snip needs compile", paths=paths))
 
 
 @rpc(blocking=True)
